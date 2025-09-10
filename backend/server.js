@@ -19,8 +19,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend')));
 }
 
-// Nodemailer transporter setup
-const transporter = nodemailer.createTransporter({
+// Nodemailer transporter setup - FIXED THIS LINE
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,

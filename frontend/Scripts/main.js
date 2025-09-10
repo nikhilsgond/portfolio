@@ -119,8 +119,16 @@ function initContactForm() {
         submitBtn.disabled = true;
 
         try {
-            // Use your actual backend URL - IMPORTANT: Replace with your URL
-            const API_BASE_URL = 'https://portfolio-backend-etoh.onrender.com';
+            // Improved local environment detection
+            const isLocal = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1' ||
+                window.location.hostname === '';
+
+            const API_BASE_URL = isLocal
+                ? 'http://localhost:3000'  // Local backend
+                : 'https://portfolio-backend-etoh.onrender.com';  // Production backend
+
+            console.log('Sending to:', API_BASE_URL);
 
             // Send data to backend
             const response = await fetch(`${API_BASE_URL}/api/contact`, {
@@ -150,7 +158,7 @@ function initContactForm() {
             submitBtn.disabled = false;
         }
     });
-}   
+}
 
 // PDF functions
 function loadPreview() {

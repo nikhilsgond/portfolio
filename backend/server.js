@@ -8,12 +8,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware - Updated CORS for Render
-app.use(cors({ 
+app.use(cors({
   origin: [
     'https://nikhil-portfolio-emne.onrender.com', // Your new frontend URL
     'https://portfolio-fullstack-v7p9.onrender.com', // Your old frontend URL
-    'http://localhost:3000',
-    'http://localhost:5500' // Add this if you use Live Server
+    'http://localhost:5500', // Live Server default port
+    'http://127.0.0.1:5500', // Live Server IP address
+    'http://localhost:3000', // If you serve frontend from different port
+    'http://127.0.0.1:3000', // IP equivalent
+    'http://localhost:8000', // Python server
+    'http://127.0.0.1:8000'  // Python server IP
   ],
   credentials: true // Allow cookies if needed
 }));
@@ -25,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from frontend in production
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV == 'development') {
   app.use(express.static(path.join(__dirname, '../frontend')));
 }
 
@@ -50,14 +54,14 @@ transporter.verify((error, success) => {
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
   console.log('Contact form submission received:', req.body);
-  
+
   const { name, email, subject, message } = req.body;
 
   // Basic validation
   if (!name || !email || !message) {
     console.log('Validation failed: Missing required fields');
-    return res.status(400).json({ 
-      error: 'Name, email, and message are required fields' 
+    return res.status(400).json({
+      error: 'Name, email, and message are required fields'
     });
   }
 
@@ -128,8 +132,8 @@ app.post('/api/contact', async (req, res) => {
     res.status(200).json({ message: 'Message sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error);
-    res.status(500).json({ 
-      error: 'An error occurred while sending the message. Please try again later.' 
+    res.status(500).json({
+      error: 'An error occurred while sending the message. Please try again later.'
     });
   }
 });

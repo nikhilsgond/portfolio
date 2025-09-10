@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware - Updated CORS for Render
 app.use(cors({ 
-  origin: ['https://your-frontend-service.onrender.com', 'http://localhost:3000'] 
+  origin: [
+    'https://portfolio-fullstack-v7p9.onrender.com', // Your actual frontend URL
+    'http://localhost:3000'
+  ] 
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

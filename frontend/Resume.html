@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Nikhil Gond</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles/resume.css">
+    <link rel="stylesheet" href="Styles/common.css">
+</head>
+
+<body>
+    <!-- navigation menu -->
+    <nav class="home-nav">
+        <div class="home-logo">
+            <img src="Images/Logo.png" alt="logo">
+        </div>
+        <ul class="home-nav-list">
+            <li class="home-nav-item"><a href="index.html">Home</a></li>
+            <li class="home-nav-item"><a href="About.html">About</a></li>
+            <li class="home-nav-item"><a href="#project">Project</a></li>
+            <li class="home-nav-item"><a href="Resume.html">Resume</a></li>
+            <li class="home-nav-item hire-btn"><a href="index.html#contact-me"><span>Contact Me</span></a></li>
+        </ul>
+    </nav>
+    <!-- Main Content  -->
+    <div class="resume-container">
+        <div class="resume-header">
+            <h1 class="resume-title">My Resume</h1>
+            <p class="resume-subtitle">Data Entry Executive | MIS Associate | SAP Operator</p>
+
+            <div class="action-buttons">
+                <a href="#" class="btn-primary" onclick="downloadResume()">
+                    <i class="fas fa-download"></i>
+                    Download PDF
+                </a>
+                <a href="#" class="btn-secondary" onclick="printResume()">
+                    <i class="fas fa-print"></i>
+                    Print Resume
+                </a>
+                <a href="#" class="btn-secondary" onclick="shareResume()">
+                    <i class="fas fa-share"></i>
+                    Share
+                </a>
+            </div>
+        </div>
+
+        <div class="resume-content">
+            <div class="resume-preview">
+                <div class="pdf-viewer">
+                    <div class="loading-animation" id="loading">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="pdf-placeholder" id="placeholder">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Resume Preview</h3>
+                        <p>Your resume will be displayed here</p>
+                        <small>Click "Load Preview" to view the PDF</small>
+                        <br><br>
+                        <button class="btn-primary" onclick="loadPreview()" style="margin-top: 20px;">
+                            <i class="fas fa-eye small"></i>
+                            Load Preview
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-sidebar">
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-info-circle"></i>Quick Info</h3>
+                    <p>Professional resume showcasing my expertise in data management, MIS reporting, process
+                        automation, and inventory control.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Years Exp</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Reports/Month</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12+</span>
+                            <span class="stat-label">Skills</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-tools"></i>Key Skills</h3>
+                    <p>Core competencies and technical expertise:</p>
+                    <div class="skills-list">
+                        <span class="skill-tag">Excel Macros</span>
+                        <span class="skill-tag">Advanced Excel</span>
+                        <span class="skill-tag">SAP Operations</span>
+                        <span class="skill-tag">MIS Reporting</span>
+                        <span class="skill-tag">Data Automation</span>
+                        <span class="skill-tag">Inventory Management</span>
+                        <span class="skill-tag">Google Sheets</span>
+                        <span class="skill-tag">Process Optimization</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-download"></i>Download Options</h3>
+                    <p>Available formats for download:</p>
+
+                    <div class="download-info">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>PDF Format (Recommended)</span>
+                    </div>
+
+                    <button class="btn-primary" onclick="downloadResume()" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-download"></i>
+                        Download Now
+                    </button>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-clock"></i>Last Updated</h3>
+                    <p>Resume was last updated on:</p>
+                    <strong style="color: #B8E0DD;">August 2025</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Always kept current with latest experience and
+                        achievements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer  -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>About Me</h3>
+                <p>A dedicated Data Entry Executive & MIS Associate with expertise in ensuring data accuracy, automating
+                    processes with Excel macros, and delivering precise reports for informed decision-making.</p>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61580763143173" class="footer-social-icon"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/menikhil.official/" class="footer-social-icon"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/nikhil-gond-7531b0240" class="footer-social-icon"><i
+                            class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="#Projects">Projects</a></li>
+                    <li><a href="Resume.html">Resume</a></li>
+                    <li><a href="index.html#contact-me">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Data Entry & Management</a></li>
+                    <li><a href="#">MIS Reporting</a></li>
+                    <li><a href="#">Process Automation</a></li>
+                    <li><a href="#">Inventory Tracking</a></li>
+                    <li><a href="#">Logistics Coordination</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Rancharda, Gujarat, India</li>
+                    <li><i class="fas fa-phone"></i> +91-9011477902</li>
+                    <li><i class="fas fa-envelope"></i> nikhilsgond@gmail.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nikhil Gond. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Scripts/main.js"></script>
+
+</body>
+
+
+</html>

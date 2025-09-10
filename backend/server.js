@@ -7,13 +7,15 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware - Updated CORS for Render
+// Update the CORS origin to your new frontend URL
 app.use(cors({ 
   origin: [
-    'https://portfolio-fullstack-v7p9.onrender.com', // Your actual frontend URL
+    'https://nikhil-portfolio.onrender.com', // Your new frontend URL
+    'https://portfolio-fullstack-v7p9.onrender.com', // Keep old URL temporarily
     'http://localhost:3000'
   ] 
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -141,4 +143,5 @@ if (process.env.NODE_ENV === 'production') {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+
 });

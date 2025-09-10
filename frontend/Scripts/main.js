@@ -212,3 +212,4 @@ function copyToClipboard() {
         .then(() => alert('Resume link copied to clipboard!'))
         .catch(() => alert('Could not copy link to clipboard. Please copy the URL manually.'));
 }
+

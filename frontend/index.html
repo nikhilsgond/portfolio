@@ -19,15 +19,28 @@
 <body>
   <!-- navigation menu -->
   <nav class="home-nav">
-    <div class="home-logo">
-      <img src="Images/Logo.png" alt="logo">
-    </div>
-    <ul class="home-nav-list">
+    <ul class="sidebar">
+      <li onclick="hideSideBar()" class="home-nav-item hide-sidebar-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </li>
       <li class="home-nav-item"><a href="index.html">Home</a></li>
       <li class="home-nav-item"><a href="About.html">About</a></li>
       <li class="home-nav-item"><a href="#project">Project</a></li>
       <li class="home-nav-item"><a href="Resume.html">Resume</a></li>
-      <li class="home-nav-item hire-btn"><a href="#contact-me"><span>Contact Me</span></a></li>
+      <li onclick="hideSideBar()" class="home-nav-item hire-btn"><a href="#contact-me"><span>Contact Me</span></a></li>
+    </ul>
+  </nav>
+  <nav class="home-nav">
+    <ul class="home-nav-list">
+      <li class="home-logo"><img src="Images/Logo.png" alt="logo"></li>
+      <li class="hideOnMobile home-nav-item"><a href="index.html">Home</a></li>
+      <li class="hideOnMobile home-nav-item"><a href="About.html">About</a></li>
+      <li class="hideOnMobile home-nav-item"><a href="#project">Project</a></li>
+      <li class="hideOnMobile home-nav-item"><a href="Resume.html">Resume</a></li>
+      <li class="hideOnMobile home-nav-item hire-btn"><a href="#contact-me"><span>Contact Me</span></a></li>
+      <li onclick="showSideBar()" class="home-nav-item show-sidebar-btn hideOnDestop">
+        <i class="fa-solid fa-bars"></i>
+      </li>
     </ul>
   </nav>
 
@@ -613,7 +626,6 @@
   </footer>
 
   <script src="Scripts/main.js"></script>
-
 </body>
 
 </html>

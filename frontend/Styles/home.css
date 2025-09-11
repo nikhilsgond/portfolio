@@ -1253,6 +1253,12 @@ textarea.form-control {
     padding: 30px;
   }
 
+  .contact-info{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
   .contact-title {
     font-size: 2rem;
   }
@@ -1383,5 +1389,187 @@ textarea.form-control {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .exp-timeline:after {
+    left: 30px;
+  }
+  
+  .exp-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  
+  .exp-item:nth-child(even) {
+    left: 0;
+  }
+  
+  .exp-item:after {
+    left: 18px;
+  }
+  
+  .tools-grid-main {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 5rem 3% 2rem;
+    gap: 2rem;
+  }
+  
+  .hero-left, .hero-right {
+    flex: none;
+    width: 100%;
+  }
+  
+  .hero-right {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .hero-image img {
+    height: auto;
+    max-width: 100%;
+    margin-right: 0;
+  }
+  
+  .hero-contact {
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .continuous-animation {
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+  
+  .animation-item {
+    padding: 0.7rem 1.2rem;
+  }
+  
+  .animation-text {
+    font-size: 0.9rem;
+  }
+  
+  .work-container {
+    padding-top: 3rem;
+  }
+  
+  .skills-container {
+    gap: 1.5rem;
+  }
+  
+  .skill-card {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .work-exp-section {
+    padding: 2rem 1rem;
+  }
+  
+  .education-container {
+    margin: 20px auto;
+    padding: 20px 15px;
+  }
+  
+  .education-item {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .contact-content {
+    flex-direction: column;
+  }
+  
+  .contact-info, .contact-form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-role {
+    font-size: 1.8rem;
+  }
+  
+  .hero-contact {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .skill-card {
+    padding: 1.5rem;
+  }
+  
+  .icon-container {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.5rem;
+  }
+  
+  .skill-title {
+    font-size: 1.3rem;
+  }
+  
+  .work-exp-title {
+    font-size: 1.8rem;
+  }
+  
+  .exp-content {
+    padding: 15px;
+  }
+  
+  .exp-company {
+    font-size: 1.2rem;
+  }
+  
+  .tools-grid-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .tool-card-main {
+    height: auto;
+    padding: 20px;
+  }
+  
+  .education-title {
+    font-size: 1.8rem;
+  }
+  
+  .education-content {
+    padding: 20px;
+  }
+  
+  .education-degree {
+    font-size: 1.1rem;
+  }
+  
+  .contact-title {
+    font-size: 2rem;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .info-icon {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }

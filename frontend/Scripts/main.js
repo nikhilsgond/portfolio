@@ -1,3 +1,16 @@
+function showSideBar() {
+    const sidebar = document.querySelector('.sidebar')
+    const navArea = document.querySelector('.home-nav-list')
+    navArea.style.display = 'none'
+    sidebar.style.display = 'flex'
+}
+function hideSideBar() {
+    const sidebar = document.querySelector('.sidebar')
+    const navArea = document.querySelector('.home-nav-list')
+    navArea.style.display = 'flex'
+    sidebar.style.display = 'none'
+}
+
 // Combined and optimized script for Nikhil's portfolio - PRODUCTION VERSION
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize all functionality

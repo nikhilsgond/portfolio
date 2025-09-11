@@ -11,6 +11,7 @@ body {
   line-height: 1.6;
   opacity: 0;
   animation: fadeIn 1s ease-in-out forwards;
+  width: 100vw;
 }
 
 .about-container {
@@ -26,6 +27,7 @@ body {
   opacity: 0;
   animation: slideDown 0.8s ease-out forwards;
 }
+
 .about-title {
   font-size: 2.8rem;
   color: #222;
@@ -530,18 +532,35 @@ body {
     font-size: 2.2rem;
   }
 
-  .interests-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
   .profile-placeholder,
   .profile-image {
     width: 220px;
     height: 220px;
   }
+
+  /* Styles for tablets */
+  .interests-section,
+  .fun-fact {
+    padding: 1.5rem;
+  }
+
+  .interests-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .interest-item {
+    padding: 1rem 0.5rem;
+  }
+
+  .interest-icon {
+    font-size: 1.7rem;
+  }
+
 }
 
 @media (max-width: 576px) {
+
   .about-container {
     padding: 30px 15px;
   }
@@ -558,8 +577,27 @@ body {
     padding: 25px 20px;
   }
 
-  .fun-fact {
-    padding: 30px 20px;
+  /* Styles for mobile phones */
+  .interests-section h2,
+  .fun-fact h2 {
+    font-size: 1.5rem;
+  }
+
+  .interests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fun-fact p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .fact-number {
+    text-align: center;
+  }
+
+  .footer-container {
+    font-size: 12px;
   }
 }
 

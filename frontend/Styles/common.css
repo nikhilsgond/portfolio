@@ -210,6 +210,9 @@ body {
   .sidebar .home-nav-item:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
+  .footer-container {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -230,6 +233,9 @@ body {
 
   .sidebar .home-nav-item:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .footer-container {
+    font-size: 12px;
   }
 }
 

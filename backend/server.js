@@ -1,55 +1,39 @@
-const express = require('express');
-const cors = require('cors');
-const nodemailer = require('nodemailer');
-const path = require('path');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware - Updated CORS for Render
+// Middleware - CORS
 app.use(cors({
   origin: [
-    'https://nikhil-portfolio-emne.onrender.com', // Your new frontend URL
-    'https://portfolio-fullstack-v7p9.onrender.com', // Your old frontend URL
-    'http://localhost:5500', // Live Server default port
-    'http://127.0.0.1:5500', // Live Server IP address
-    'http://localhost:3000', // If you serve frontend from different port
-    'http://127.0.0.1:3000', // IP equivalent
-    'http://localhost:8000', // Python server
-    'http://127.0.0.1:8000'  // Python server IP
+    'https://nikhil-portfolio-emne.onrender.com',
+    'https://portfolio-fullstack-v7p9.onrender.com',
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000'
   ],
-  credentials: true // Allow cookies if needed
+  credentials: true
 }));
 
 // Handle preflight requests
-app.options('*', cors()); // Enable preflight for all routes
+app.options('*', cors());
 
+// Middleware to parse JSON and URL-encoded payloads
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from frontend in production
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV == 'development') {
-  app.use(express.static(path.join(__dirname, '../frontend')));
+// Serve static files from frontend
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+  app.use(express.static(path.join(path.resolve(), '../frontend')));
 }
-
-// Nodemailer transporter setup - FIXED THIS LINE
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
-
-// Verify transporter configuration
-transporter.verify((error, success) => {
-  if (error) {
-    console.log('Error with transporter configuration:', error);
-  } else {
-    console.log('Server is ready to take messages');
-  }
-});
 
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
@@ -57,7 +41,6 @@ app.post('/api/contact', async (req, res) => {
 
   const { name, email, subject, message } = req.body;
 
-  // Basic validation
   if (!name || !email || !message) {
     console.log('Validation failed: Missing required fields');
     return res.status(400).json({
@@ -65,9 +48,7 @@ app.post('/api/contact', async (req, res) => {
     });
   }
 
-  // Generate timestamp
-  const now = new Date();
-  const timestamp = now.toLocaleString('en-US', {
+  const timestamp = new Date().toLocaleString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -75,16 +56,15 @@ app.post('/api/contact', async (req, res) => {
     minute: '2-digit'
   });
 
-  // Create email subject with prefix and timestamp
   const emailSubject = `Portfolio Contact - ${subject || `Message from ${name}`} [${timestamp}]`;
   console.log('Generated email subject:', emailSubject);
 
-  // Email content
-  const mailOptions = {
-    from: email,
-    to: "nikhilsgond@gmail.com",
+  // Brevo API email payload
+  const brevoPayload = {
+    sender: { name: 'Portfolio Contact', email: process.env.BREVO_USER },
+    to: [{ email: process.env.GMAIL_USER, name: 'Portfolio Owner' }],
     subject: emailSubject,
-    html: `
+    htmlContent: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">
           New Portfolio Contact Form Submission
@@ -125,11 +105,25 @@ app.post('/api/contact', async (req, res) => {
   };
 
   try {
-    // Send email
-    console.log('Attempting to send email...');
-    await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully!');
-    res.status(200).json({ message: 'Message sent successfully!' });
+    console.log('Attempting to send email via Brevo API...');
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': process.env.BREVO_API_KEY
+      },
+      body: JSON.stringify(brevoPayload)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      console.log('Email sent successfully!', result);
+      res.status(200).json({ message: 'Message sent successfully!', result });
+    } else {
+      console.error('Error sending email:', result);
+      res.status(500).json({ error: 'Failed to send email', details: result });
+    }
   } catch (error) {
     console.error('Error sending email:', error);
     res.status(500).json({
@@ -138,21 +132,19 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Basic health check endpoint
+// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({ message: 'Server is running!' });
 });
 
-// Serve frontend for all other requests in production
+// Serve frontend for all other routes in production
 if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    res.sendFile(path.join(path.resolve(), '../frontend/index.html'));
   });
 }
 
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-
 });
-
-

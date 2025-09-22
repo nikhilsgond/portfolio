@@ -82,7 +82,7 @@ app.post('/api/contact', async (req, res) => {
   // Email content
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_USER,
+    to: "nikhilsgond@gmail.com",
     subject: emailSubject,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -154,4 +154,5 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 
 });
+
 
